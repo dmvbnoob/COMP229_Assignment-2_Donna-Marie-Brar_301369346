@@ -87,6 +87,16 @@ const remove = async (req, res) => {
         });
     } 
 }
+const removeAll = async (req, res) => {
+    try {
+        await Product.deleteMany({});
+        res.status(200).json({ message: "All products have been deleted." });
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        });
+    }
+};
 
-export default { create, productByID, read, list, remove, update, listPublished };
+export default { create, productByID, read, list, remove, update, listPublished, removeAll };
 
