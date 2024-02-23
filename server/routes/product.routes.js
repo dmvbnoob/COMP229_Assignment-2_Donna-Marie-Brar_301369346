@@ -8,5 +8,5 @@ import express from 'express'
   router.route('/api/products/:productId').get(productCtrl.read)
   router.route('/api/products/:productId').put(productCtrl.update)
   router.route('/api/products/:productId').delete(productCtrl.remove)
-  router.delete('/api/products/all', productCtrl.removeAll);
+  router.delete('/api/products', productCtrl.removeAll);
   export default router
