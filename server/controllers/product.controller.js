@@ -24,7 +24,7 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
-const productyID = async (req, res, next, id) => { 
+const productByID = async (req, res, next, id) => { 
 try {
 let product = await Product.findById(id) 
 if (!product)
