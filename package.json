@@ -1,10 +1,21 @@
 {
-  "dependencies": {
-    "concurrently": "^8.2.2",
-    "express": "^4.18.2",
-    "global": "^4.4.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
-  }
+ "name": "marketplace",
+ "version": "1.0.0",
+ "main": "index.js",
+ "author": "Donna Brar",
+ "license": "MIT",
+ "devDependencies": {
+  "concurrently": "^8.2.2",
+  "nodemon": "^2.0.22"
+ },
+ "scripts": {
+  "dev": "concurrently 'vite' \"nodemon server.js\"",
+  "build": "vite build",
+  "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview"
+ },
+ "dependencies": {
+  "global": "^4.4.0"
+ },
+ "repository": "https://github.com/dmvbnoob/COMP229_Assignment-2_Donna-Marie-Brar_301369346.git"
 }
