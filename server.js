@@ -13,7 +13,7 @@ mongoose.connection.on('error', () => {
 throw new Error(`unable to connect to database: ${config.mongoUri}`) 
 })
 app.get("/", (req, res) => {
-res.json({ message: "Welcome to User application." });
+res.json({ message: "Welcome to DressStore application." });
 });
 app.listen(config.port, (err) => { 
 if (err) {
