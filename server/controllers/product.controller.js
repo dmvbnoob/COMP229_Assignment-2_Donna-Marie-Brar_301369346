@@ -14,16 +14,35 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
-const list = async (req, res) => { 
-try {
-let products = await Product.find().select('name description price quantity category updated created') 
-res.json(products)
-} catch (err) {
-return res.status(400).json({
-error: errorHandler.getErrorMessage(err) 
-})
-} 
-}
+const list = async (req, res) => {
+    try {
+        console.log("Fetching products...");
+        let filter = {};
+        if (req.query.name) {
+            filter.name = { $regex: req.query.name, $options: 'i' };
+        }
+        let products = await Product.find(filter).select('name description price quantity category updated created published');
+        console.log("Products fetched:", products);
+
+        res.json(products);
+    } catch (err) {
+        console.error("Error fetching products:", err);
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err) 
+        });
+    } 
+};
+
+const listPublished = async (req, res) => {
+    try {
+        const publishedProducts = await Product.find({ published: true });
+        res.json(publishedProducts);
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        });
+    }
+};
 const productByID = async (req, res, next, id) => { 
 try {
 let product = await Product.findById(id) 
@@ -69,5 +88,5 @@ const remove = async (req, res) => {
     } 
 }
 
-export default { create, productByID, read, list, remove, update };
+export default { create, productByID, read, list, remove, update, listPublished };
 
